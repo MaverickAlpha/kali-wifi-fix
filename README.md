@@ -53,11 +53,46 @@ This suite:
 4. Integrates with **NetworkManager** for LED management
 
 ## 🖥️ Tested On
-
 - Kali Linux 2026.1 (kernel 6.18.12)
 - RTL8814AU USB adapter
 - AIC8800 USB adapter
 - RTL8821CU USB adapter
+
+## 🛠️ Compatibility & Recommended Adapters
+
+### Recommended USB Adapters (2026):
+- **ALFA AWUS036AXML (WiFi 6E, 2.4/5/6GHz, AXE3000)**
+- **ALFA AWUS036NHA (Atheros AR9271)**
+- **TP-Link Archer T4U (Realtek)**
+- **Panda Wireless PAU09**
+
+### Compatibility Notes:
+- Ensure your system is running **Kali Linux 2025.3 or later** with kernel 6.14+.
+- For **WiFi 6E adapters**, kernel 6.18+ is recommended.
+
+### Troubleshooting Common Issues:
+1. **WiFi Adapter Not Detected**:
+   - Check if your adapter is listed:
+     ```bash
+     lsusb
+     sudo lshw -C network
+     ```
+   - Verify kernel/driver compatibility.
+
+2. **Monitor Mode Not Working**:
+   ```bash
+   sudo airmon-ng check kill
+   sudo iwconfig wlan0 mode monitor
+   ```
+
+3. **Dropped Connections Still Occur**:
+   - Ensure power management is disabled:
+     ```bash
+     iwconfig wlan0 power off
+     ```
+
+4. **Driver Issues in VMs**:
+   - USB pass-through must be enabled; PCI-based WiFi cards are not supported in VMs.
 
 ## ↩️ Rollback
 
